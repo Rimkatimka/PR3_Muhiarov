@@ -1,0 +1,37 @@
+﻿<Window x:Class="PR3_Muhiarov.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PR3_Muhiarov"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <TextBox x:Name="t1" HorizontalAlignment="Left" Width="100" Height="50" Margin="0,217,0,167"/>
+        <TextBox x:Name="t2" HorizontalAlignment="Left" Width="100" Height="50" Margin="0,273,0,111"/>
+        <TextBox x:Name="t3" HorizontalAlignment="Left" Width="100" Height="50" Margin="0,328,0,56"/>
+
+        <ListBox Name="Lb" HorizontalAlignment="Center" VerticalAlignment="Top" Width="500" Height="400" >
+
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <TextBlock Text="{Binding Id}"/>
+                        <TextBlock Text="{Binding Path=Name}"/>
+                        <TextBlock Text="{Binding Path=Password}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+
+        </ListBox>
+        <Button x:Name="b1" Height="51" Width="121" Content="Добавитьт" HorizontalAlignment="Left" VerticalAlignment="Bottom" Click="Button_Click">
+
+        </Button>
+        <Button x:Name="b2" Height="51" Width="121" Content="Очистка" HorizontalAlignment="Left" VerticalAlignment="Bottom" Click="Button_Click1" Margin="655,0,0,0">
+
+        </Button>
+        <Button x:Name="b3" Height="51" Width="121" Content="Сортировка" HorizontalAlignment="Left" VerticalAlignment="Bottom" Click="Button_Click2" Margin="655,0,0,56">
+
+        </Button>
+    </Grid>
+</Window>
