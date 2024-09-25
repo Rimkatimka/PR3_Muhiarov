@@ -22,37 +22,35 @@ namespace PR3_Muhiarov
     /// </summary>
     public partial class MainWindow : Window
     {
-        public static List<User> users = new List<User>();
         public static int[] arr;
+        public static int i = 0;
 
         public MainWindow()
         {
             InitializeComponent();
         }
-        public class User
-        {
-            private int _Id;
-            private string _Name;
-            private string _Password;
 
-            public int Id 
-            {
-                get 
-                {
-                    return _Id; 
-                } 
-                set 
-                { 
-                    _Id = value; 
-                } 
-            }
-            public string Name { get { return _Name; } set { _Name = value; } }
-            public string Password { get { return _Password;} set { _Password = value; } }
-        }
-        private static int [] Buble(int[] arr)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
-            var list = users.ToList();
-            users.Where(w => w.Id == arr[1]).ToList();
+            arr = new int[42];
+            Random rand = new Random();
+            for (int i = 0; i < arr.Length; i++)
+            {
+                arr[i] = rand.Next(0,25);
+            }
+            foreach (var item in arr)
+            {
+                Lb.Items.Add(item);
+            }
+        }
+
+        private void Button_Click1(object sender, RoutedEventArgs e)
+        {
+            Lb.Items.Clear();
+        }
+        private void Button_Click2(object sender, RoutedEventArgs e)
+        {
+            Lb.Items.Clear();
             int temp = 0;
             for (int write = 0; write < arr.Length; write++)
             {
@@ -66,37 +64,53 @@ namespace PR3_Muhiarov
                     }
                 }
             }
-            return arr;
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            users.Add(new User
-            {
-                Id = Convert.ToInt32(t1.Text),
-                Name = t2.Text,
-                Password = t3.Text,
-            });
-
-            foreach (var item in users)
+            for (int i = 0; i < arr.Length; i++) ;
+            foreach (var item in arr)
             {
                 Lb.Items.Add(item);
             }
         }
-
-        private void Button_Click1(object sender, RoutedEventArgs e)
-        {
-            users.Clear();
-            Lb.Items.Clear();
-        }
-        private void Button_Click2(object sender, RoutedEventArgs e)
+        private void Button_Click3(object sender, RoutedEventArgs e)
         {
             Lb.Items.Clear();
-            users.Sort();
-            foreach (var item in users)
+            Sort(arr, 0, (arr.Length - 1));
+            foreach (var item in arr)
             {
                 Lb.Items.Add(item);
             }
+        }
+        public static void Sort(int[] arr, int left, int right)
+        {
+            if (left < right)
+            {
+                int pivot = Partition(arr, left, right);
+
+                Sort(arr, left, pivot - 1);
+                Sort(arr, pivot + 1, right);
+            }
+        }
+
+        private static int Partition(int[] arr, int left, int right)
+        {
+            int pivot = arr[right];
+            int i = left - 1;
+
+            for (int j = left; j < right; j++)
+            {
+                if (arr[j] <= pivot)
+                {
+                    i++;
+                    int temp = arr[i];
+                    arr[i] = arr[j];
+                    arr[j] = temp;
+                }
+            }
+
+            int temp1 = arr[i + 1];
+            arr[i + 1] = arr[right];
+            arr[right] = temp1;
+
+            return i + 1;
         }
     }
 }
